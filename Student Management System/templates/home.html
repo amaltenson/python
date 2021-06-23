@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../assets/libs/css/Student/style.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
 
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <script src="https://kit.fontawesome.com/aafb336302.js" crossorigin="anonymous"></script>
@@ -15,14 +15,14 @@
   <li><a href="#news">News</a></li>
   <li><a href="#contact">Contact</a></li>
   <li><a href="#about">About</a></li>
-  <li style="float:right"><a class="active" href="login.html">Login</a></li>
+  <li style="float:right"><a class="active" href="login">Login</a></li>
 </ul>
 
 <!-- Slide Show -->
 <section>
-  <img class="mySlides" src="../assets/images/Slideshow/1.jpg" width="100%" height="300">
-  <img class="mySlides" src="../assets/images/Slideshow/2.jpg" width="100%" height="300">
-  <img class="mySlides" src="../assets/images/Slideshow/3.jpg" width="100%" height="300">
+  <img class="mySlides" src="{{ url_for('static',filename='styles/images/b1.png') }}" width="100%" height="300">
+  <img class="mySlides" src="{{ url_for('static',filename='styles/images/b2.png') }}" width="100%" height="300">
+  <img class="mySlides" src="{{ url_for('static',filename='styles/images/b3.png') }}" width="100%" height="300">
 </section>
 
 <script>
