@@ -36,7 +36,7 @@ def login():
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(
-            'SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
+            'SELECT * FROM login WHERE username = %s AND password = %s', (username, password,))
         # Fetch one record and return result
         account = cursor.fetchone()
         # If account exists in accounts table in out database
@@ -45,7 +45,7 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
-            session['email'] = account['email']
+            #session['email'] = account['email']
             # Redirect to home page
             return redirect(url_for('home'))
         else:
@@ -75,8 +75,8 @@ def home():
     if 'loggedin' in session:
         # User is loggedin show them the home page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE id = %s',
-                       (session['id'],))
+        cursor.execute('SELECT * FROM accounts WHERE username = %s',
+                       (session['username'],))
         account = cursor.fetchone()
 
         return render_template('s_welcome.html', account=account)
@@ -92,8 +92,8 @@ def profile():
     if 'loggedin' in session:
         # We need all the account info for the user so we can display it on the profile page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE id = %s',
-                       (session['id'],))
+        cursor.execute('SELECT * FROM accounts WHERE username = %s',
+                       (session['username'],))
         account = cursor.fetchone()
 
         # Show the profile page with account info
@@ -108,10 +108,10 @@ def s_attendance():
     if 'loggedin' in session:
         # User is loggedin show them the home page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE id = %s',
-                       (session['id'],))
-        account = cursor.fetchone()
-        return render_template('s_attendance.html', account=account)
+        cursor.execute('SELECT * FROM attendance WHERE username = %s',
+                       (session['username'],))
+        attendance = cursor.fetchone()
+        return render_template('s_attendance.html', attendance=attendance)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
@@ -122,10 +122,10 @@ def s_marks():
     if 'loggedin' in session:
         # User is loggedin show them the home page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE id = %s',
-                       (session['id'],))
-        account = cursor.fetchone()
-        return render_template('s_marks.html', account=account)
+        cursor.execute('SELECT * FROM marks WHERE username = %s',
+                       (session['username'],))
+        marks = cursor.fetchone()
+        return render_template('s_marks.html', marks=marks)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
