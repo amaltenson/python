@@ -24,7 +24,7 @@ def index():
     return render_template('home.html')
 
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     # Output message if something goes wrong...
     msg = ''
@@ -52,7 +52,7 @@ def login():
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 # http://localhost:5000/python/logout - this will be the logout page
 
@@ -142,6 +142,62 @@ def s_timetable():
         return render_template('s_timetable.html', account=account)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
+
+
+@app.route('/t_login', methods=['GET', 'POST'])
+def t_login():
+    # Output message if something goes wrong...
+    msg = ''
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(
+            'SELECT * FROM tlogin WHERE username = %s AND password = %s', (username, password,))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+        # If account exists in accounts table in out database
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['username'] = account['username']
+            #session['email'] = account['email']
+            # Redirect to home page
+            return redirect(url_for('t_dashboard'))
+        else:
+            # Account doesnt exist or username/password incorrect
+            msg = 'Incorrect username/password!'
+    # Show the login form with message (if any)
+    return render_template('t_login.html', msg=msg)
+
+
+@app.route('/t_dashboard')
+def t_dashboard():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE username = %s',
+                       (session['username'],))
+        account = cursor.fetchone()
+
+        return render_template('t_dashboard.html')
+    # User is not loggedin redirect to login page
+    return redirect(url_for('t_login'))
+
+
+@app.route('/t_logout')
+def t_logout():
+    # Remove session data, this will log the user out
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    # Redirect to login page
+    return redirect(url_for('t_login'))
 
 
 if __name__ == "__main__":

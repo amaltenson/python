@@ -3,13 +3,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> Login </title>
-		<link rel="stylesheet" href="../static/style.css">	
+		<link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">	
 	</head>
 	<body>
 		<div class="logincontent" align="center">
 			<div class="logintop">
-				<h1>Login</h1>
-			</div></br></br></br></br>
+				<h1>Login (Student)</h1>
+			</div>
+			<div class="links">
+				<a href="{{ url_for('t_login') }}" class="active">Teacher ? Login here</a>
+			</div>
+		</br></br></br>
 			<div class="loginbottom">
 			<form action="{{ url_for('login')}}" method="post" autocomplete="off">
 			<div class="msg">{{ msg }}</div>
@@ -17,7 +21,6 @@
 			<input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br></br>
 			<input type="submit" class="btn" value="Login">
 			</form></br></br>
-			<p class="worddark">New to this page? <a class="worddark" href="{{ url_for('register')}}">Register here</a></p>
 			</div>
 		</div>
 	</body>
