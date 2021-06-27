@@ -73,6 +73,7 @@ def logout():
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
+
         # User is loggedin show them the home page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE username = %s',
@@ -90,6 +91,8 @@ def home():
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
+        # checking weather profile is completed or not
+
         # We need all the account info for the user so we can display it on the profile page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE username = %s',
@@ -102,16 +105,58 @@ def profile():
     return redirect(url_for('login'))
 
 
-@app.route('/s_attendance')
-def s_attendance():
+@app.route('/s1_sattendance')
+def s1_sattendance():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM attendance WHERE username = %s',
+        cursor.execute('SELECT * FROM s1sattendance WHERE username = %s',
                        (session['username'],))
         attendance = cursor.fetchone()
-        return render_template('s_attendance.html', attendance=attendance)
+        return render_template('s1_sattendance.html', s1sattendance=attendance)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s2_sattendance')
+def s2_sattendance():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM s2sattendance WHERE username = %s',
+                       (session['username'],))
+        attendance = cursor.fetchone()
+        return render_template('s2_sattendance.html', s2sattendance=attendance)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s3_sattendance')
+def s3_sattendance():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM s3sattendance WHERE username = %s',
+                       (session['username'],))
+        attendance = cursor.fetchone()
+        return render_template('s3_sattendance.html', s3sattendance=attendance)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s4_sattendance')
+def s4_sattendance():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM s4sattendance WHERE username = %s',
+                       (session['username'],))
+        attendance = cursor.fetchone()
+        return render_template('s4_sattendance.html', s4sattendance=attendance)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
@@ -130,8 +175,8 @@ def s_marks():
     return redirect(url_for('login'))
 
 
-@app.route('/s_timetable')
-def s_timetable():
+@app.route('/s1_stimetable')
+def s1_stimetable():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
@@ -139,7 +184,49 @@ def s_timetable():
         cursor.execute('SELECT * FROM accounts WHERE id = %s',
                        (session['id'],))
         account = cursor.fetchone()
-        return render_template('s_timetable.html', account=account)
+        return render_template('s1_stimetable.html', account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s2_stimetable')
+def s2_stimetable():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE id = %s',
+                       (session['id'],))
+        account = cursor.fetchone()
+        return render_template('s2_stimetable.html', account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s3_stimetable')
+def s3_stimetable():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE id = %s',
+                       (session['id'],))
+        account = cursor.fetchone()
+        return render_template('s3_stimetable.html', account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
+@app.route('/s4_stimetable')
+def s4_stimetable():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE id = %s',
+                       (session['id'],))
+        account = cursor.fetchone()
+        return render_template('s4_stimetable.html', account=account)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 

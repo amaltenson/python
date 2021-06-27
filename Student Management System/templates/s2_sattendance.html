@@ -1,0 +1,72 @@
+{% extends 's_layout.html' %}
+{% block body %}
+
+<div class="dropdown" style="float:right;">
+	<button class="dropbtn">choose your semester</button>
+	<div class="dropdown-content">
+	<a href="s1_sattendance">S1</a>
+	<a href="s2_sattendance">S2</a>
+	<a href="s3_sattendance">S3</a>
+	<a href="s4_sattendance">S4</a>
+	</div>
+</div>
+
+    <div class="attendance_table_content" align="center">
+      <table class="attendance_table"  >
+          
+          <h1 align="center">S2 Attendence</h1>
+              
+          <tr>
+              <th style="width: 18%;">Course No</th>
+              <th style="width: 30%;">Course Name</th>
+              <th>Attended class</th>
+              <th>Total class</th>
+              <th>Percentage %</th>
+          </tr>
+          <tr>
+              <td>RLMCA102</td>
+              <td>Object Oriented Programming</td>
+              <td>{{s2sattendance['oopattended'] }}</td>
+              <td>{{s2sattendance['ooptotal'] }}</td>
+              <td>{{s2sattendance['ooppercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA104</td>
+              <td>Data Structures</td>
+              <td>{{s2sattendance['dsattended'] }}</td>
+              <td>{{s2sattendance['dstotal'] }}</td>
+              <td>{{s2sattendance['dspercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA106</td>
+              <td>Operating Systems</td>
+              <td>{{s2sattendance['osattended'] }}</td>
+              <td>{{s2sattendance['ostotal'] }}</td>
+              <td>{{s2sattendance['ospercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA108</td>
+              <td>Operations Research </td>
+              <td>{{s2sattendance['orattended'] }}</td>
+              <td>{{s2sattendance['ortotal'] }}</td>
+              <td>{{s2sattendance['orpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA112</td>
+              <td>Computer Organization and  Architecture</td>
+              <td>{{s2sattendance['coaattended'] }}</td>
+              <td>{{s2sattendance['coatotal'] }}</td>
+              <td>{{s2sattendance['coapercentage'] }}</td>
+          </tr>
+      </table>
+  </div>
+
+  <p class="attendance_note">**Note: This page shows the marks of the student for each of the subject.
+      It includes 3 internal examination marks, two assignment marks and finally end semester 
+      examination mark 
+  </p>
+  
+
+
+
+{% endblock %}

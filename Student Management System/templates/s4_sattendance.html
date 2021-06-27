@@ -1,0 +1,72 @@
+{% extends 's_layout.html' %}
+{% block body %}
+
+<div class="dropdown" style="float:right;">
+	<button class="dropbtn">choose your semester</button>
+	<div class="dropdown-content">
+	<a href="s1_sattendance">S1</a>
+	<a href="s2_sattendance">S2</a>
+	<a href="s3_sattendance">S3</a>
+	<a href="s4_sattendance">S4</a>
+	</div>
+</div>
+
+    <div class="attendance_table_content" align="center">
+      <table class="attendance_table"  >
+          
+          <h1 align="center">S4 Attendence</h1>
+              
+          <tr>
+              <th style="width: 18%;">Course No</th>
+              <th style="width: 30%;">Course Name</th>
+              <th>Attended class</th>
+              <th>Total class</th>
+              <th>Percentage %</th>
+          </tr>
+          <tr>
+              <td>RLMCA202</td>
+              <td>Application Development and Maintenance </td>
+              <td>{{s4sattendance['admattended'] }}</td>
+              <td>{{s4sattendance['admtotal'] }}</td>
+              <td>{{s4sattendance['admpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA204</td>
+              <td>Big Data Technologies</td>
+              <td>{{s4sattendance['bdattended'] }}</td>
+              <td>{{s4sattendance['bdtotal'] }}</td>
+              <td>{{s4sattendance['bdpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA206</td>
+              <td>Mobile Computing</td>
+              <td>{{s4sattendance['mcattended'] }}</td>
+              <td>{{s4sattendance['mctotal'] }}</td>
+              <td>{{s4sattendance['mcpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA208</td>
+              <td>Introduction to Machine Learning</td>
+              <td>{{s4sattendance['mlattended'] }}</td>
+              <td>{{s4sattendance['mltotal'] }}</td>
+              <td>{{s4sattendance['mlpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA274</td>
+              <td>Business Intelligence and its Applications</td>
+              <td>{{s4sattendance['biaattended'] }}</td>
+              <td>{{s4sattendance['biatotal'] }}</td>
+              <td>{{s4sattendance['biapercentage'] }}</td>
+          </tr>
+      </table>
+  </div>
+
+  <p class="attendance_note">**Note: This page shows the marks of the student for each of the subject.
+      It includes 3 internal examination marks, two assignment marks and finally end semester 
+      examination mark 
+  </p>
+  
+
+
+
+{% endblock %}

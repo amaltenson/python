@@ -1,0 +1,72 @@
+{% extends 's_layout.html' %}
+{% block body %}
+
+<div class="dropdown" style="float:right;">
+	<button class="dropbtn">choose your semester</button>
+	<div class="dropdown-content">
+	<a href="s1_sattendance">S1</a>
+	<a href="s2_sattendance">S2</a>
+	<a href="s3_sattendance">S3</a>
+	<a href="s4_sattendance">S4</a>
+	</div>
+</div>
+
+    <div class="attendance_table_content" align="center">
+      <table class="attendance_table"  >
+          
+          <h1 align="center">S1 Attendence</h1>
+              
+          <tr>
+              <th style="width: 18%;">Course No</th>
+              <th style="width: 30%;">Course Name</th>
+              <th>Attended class</th>
+              <th>Total class</th>
+              <th>Percentage %</th>
+          </tr>
+          <tr>
+              <td>RLMCA101</td>
+              <td>Problem Solving and Computer Programming </td>
+              <td>{{ s1sattendance['cattended'] }}</td>
+              <td>{{ s1sattendance['ctotal'] }}</td>
+              <td>{{ s1sattendance['cpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA103</td>
+              <td>Discrete Mathematics</td>
+              <td>{{s1sattendance['dmattended'] }}</td>
+              <td>{{s1sattendance['dmtotal'] }}</td>
+              <td>{{s1sattendance['dmpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA105</td>
+              <td>Applied Probability and Statistics</td>
+              <td>{{s1sattendance['staattended'] }}</td>
+              <td>{{s1sattendance['statotal'] }}</td>
+              <td>{{s1sattendance['stapercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA107</td>
+              <td>Principles of Management</td>
+              <td>{{ s1sattendance['pmattended'] }}</td>
+              <td>{{ s1sattendance['pmtotal'] }}</td>
+              <td>{{ s1sattendance['pmpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA109</td>
+              <td>Digital Fundamentals</td>
+              <td>{{s1sattendance['dfattended'] }}</td>
+              <td>{{s1sattendance['dftotal'] }}</td>
+              <td>{{s1sattendance['dfpercentage'] }}</td>
+          </tr>
+      </table>
+  </div>
+
+  <p class="attendance_note">**Note: This page shows the marks of the student for each of the subject.
+      It includes 3 internal examination marks, two assignment marks and finally end semester 
+      examination mark 
+  </p>
+  
+
+
+
+{% endblock %}

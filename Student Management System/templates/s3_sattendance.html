@@ -1,0 +1,72 @@
+{% extends 's_layout.html' %}
+{% block body %}
+
+<div class="dropdown" style="float:right;">
+	<button class="dropbtn">choose your semester</button>
+	<div class="dropdown-content">
+	<a href="s1_sattendance">S1</a>
+	<a href="s2_sattendance">S2</a>
+	<a href="s3_sattendance">S3</a>
+	<a href="s4_sattendance">S4</a>
+	</div>
+</div>
+
+    <div class="attendance_table_content" align="center">
+      <table class="attendance_table"  >
+          
+          <h1 align="center">S3 Attendence</h1>
+              
+          <tr>
+              <th style="width: 18%;">Course No</th>
+              <th style="width: 25%;">Course Name</th>
+              <th >Attended class</th>
+              <th >Total class</th>
+              <th >Percentage %</th>
+          </tr>
+          <tr>
+              <td>RLMCA201</td>
+              <td>Computer Networks</td>
+              <td>{{s3sattendance['cnattended'] }}</td>
+              <td>{{s3sattendance['cntotal'] }}</td>
+              <td>{{s3sattendance['cnpercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA203</td>
+              <td>Software Engineering</td>
+              <td>{{s3sattendance['seattended'] }}</td>
+              <td>{{s3sattendance['setotal'] }}</td>
+              <td>{{s3sattendance['sepercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA205</td>
+              <td> Database Management Systems</td>
+              <td>{{s3sattendance['dbmsattended'] }}</td>
+              <td>{{s3sattendance['dbmstotal'] }}</td>
+              <td>{{s3sattendance['dbmspercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA207</td>
+              <td>Design and Analysis of  Algorithms</td>
+              <td>{{s3sattendance['daaattended'] }}</td>
+              <td>{{s3sattendance['daatotal'] }}</td>
+              <td>{{s3sattendance['daapercentage'] }}</td>
+          </tr>
+          <tr>
+              <td>RLMCA209</td>
+              <td>Web Programming</td>
+              <td>{{s3sattendance['wpattended'] }}</td>
+              <td>{{s3sattendance['wptotal'] }}</td>
+              <td>{{s3sattendance['wppercentage'] }}</td>
+          </tr>
+      </table>
+  </div>
+
+  <p class="attendance_note">**Note: This page shows the marks of the student for each of the subject.
+      It includes 3 internal examination marks, two assignment marks and finally end semester 
+      examination mark 
+  </p>
+  
+
+
+
+{% endblock %}
